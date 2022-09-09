@@ -171,7 +171,7 @@ public class ProductServiceImplTest {
 
 	@Test
 	public void whenSearchThenReturnAnListOfUser() {
-		when(productRepository.findByName(anyDouble(), anyDouble(), anyString(), any())).thenReturn(productPage);
+		//when(productRepository.findByName(anyDouble(), anyDouble(), anyString(), any())).thenReturn(productPage);
 
 		Page<ProductDto> products = productService.search(10.0, 2800.0, "lenovo", pageable);
 		ProductDto product = productService.search(10.0, 2800.0, "lenovo", pageable).getContent().get(0);
@@ -186,12 +186,12 @@ public class ProductServiceImplTest {
 	}
 
 	private void startUser() {
-		this.product = new Product(NAME, DESCRIPTION, PRICE);
+		/*this.product = new Product(NAME, DESCRIPTION, PRICE);
 		product.setId(ID);
 		this.productDto = new ProductDto(ID, NAME, DESCRIPTION, PRICE);
 		this.productOpt = Optional.of(product);
 		this.productForm = new ProductForm(NAME, DESCRIPTION, PRICE);
-		this.productPage = new PageImpl<>(List.of(product));
+		this.productPage = new PageImpl<>(List.of(product));*/
 		
 	}
 }

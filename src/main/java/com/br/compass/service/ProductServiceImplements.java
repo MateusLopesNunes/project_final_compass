@@ -1,5 +1,6 @@
 package com.br.compass.service;
 
+import com.br.compass.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -16,10 +17,12 @@ import com.br.compass.repository.ProductRepository;
 public class ProductServiceImplements implements ProductService {
 
 	private ProductRepository productRepository;
+	private CategoryRepository categoryRepository;
 
 	@Autowired
-	public ProductServiceImplements(ProductRepository productRepository) {
+	public ProductServiceImplements(ProductRepository productRepository, CategoryRepository categoryRepository) {
 		this.productRepository = productRepository;
+		this.categoryRepository = categoryRepository;
 	}
 
 	@Override
@@ -30,7 +33,7 @@ public class ProductServiceImplements implements ProductService {
 
 	@Override
 	public ProductDto saveProduct(ProductForm productForm, UriComponentsBuilder builder) {
-		Product product = productRepository.save(productForm.dtoToProduct());
+		Product product = productRepository.save(productForm.dtoToProduct(categoryRepository));
 		return new ProductDto(product);
 	}
 
@@ -56,7 +59,7 @@ public class ProductServiceImplements implements ProductService {
 
 	@Override
 	public Page<ProductDto> search(Double maxPrice, Double minPrice, String q, Pageable page) {
-		Page<Product> product = productRepository.findByName(maxPrice, minPrice, q, page);
+		Page<Product> product = productRepository.findByNameAndPrice(maxPrice, minPrice, q, page);
 		return ProductDto.modelToDtoPage(product);
 	}
 	

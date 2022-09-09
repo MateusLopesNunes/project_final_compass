@@ -14,6 +14,7 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 			+ "OR UPPER(description) LIKE UPPER(CONCAT('%', :q, '%'))))"
 			+ "AND (:min_price IS NULL OR price >= :min_price)"
 			+ "AND (:max_price IS NULL OR price <= :max_price)", nativeQuery = true)
-	Page<Product> findByName(@Param("max_price") Double maxPrice, @Param("min_price") Double minPrice, @Param("q") String q, Pageable page);
-	
+	Page<Product> findByNameAndPrice(@Param("max_price") Double maxPrice, @Param("min_price") Double minPrice, @Param("q") String q, Pageable page);
+
+	Product findByCategoryName(String name);
 }

@@ -1,9 +1,6 @@
 package com.br.compass.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Entity
 public class Product {
@@ -14,14 +11,18 @@ public class Product {
 	private String name;
 	private String description;
 	private Double price;
-	
+
+	@ManyToOne
+	private Category category;
+
 	public Product() {
 	}
 
-	public Product(String name, String description, Double price) {
+	public Product(String name, String description, Double price, Category category) {
 		this.name = name;
 		this.description = description;
 		this.price = price;
+		this.category = category;
 	}
 
 	public Long getId() {
@@ -54,6 +55,14 @@ public class Product {
 
 	public void setPrice(Double price) {
 		this.price = price;
+	}
+
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 
 	@Override

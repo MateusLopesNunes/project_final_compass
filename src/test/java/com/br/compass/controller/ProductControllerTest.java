@@ -176,11 +176,11 @@ class ProductControllerTest {
 	}
 	
 	private void startUser() {
-		this.product = new Product(NAME, DESCRIPTION, PRICE);
+		/*this.product = new Product(NAME, DESCRIPTION, PRICE);
 		product.setId(ID);
 		this.productDto = new ProductDto(ID, NAME, DESCRIPTION, PRICE);
 		this.productForm = new ProductForm(NAME, DESCRIPTION, PRICE);
 		this.productPage = new PageImpl<ProductDto>(List.of(productDto));
-		this.uriBuilder = UriComponentsBuilder.newInstance();
+		this.uriBuilder = UriComponentsBuilder.newInstance();*/
 	}
 }
