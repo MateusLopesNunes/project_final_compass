@@ -53,7 +53,7 @@ public class ProductServiceImplements implements ProductService {
 	@Override
 	public ProductDto updateProduct(ProductForm productForm, Long id) {
 		verifyExists(id);
-		Product update = productForm.update(id, productRepository);
+		Product update = productForm.update(id, productRepository, categoryRepository);
 		return new ProductDto(update);
 	}
 

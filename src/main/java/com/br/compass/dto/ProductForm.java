@@ -57,16 +57,23 @@ public class ProductForm {
 	}
 
 	public Product dtoToProduct(CategoryRepository categoryRepository) {
-		Category category = categoryRepository.findByName(nameCategory);
+		Category category = findcategoryByName(categoryRepository);
 		System.out.println(category.toString());
 		return new Product(name, description, price, category);
 	}
 
-	public Product update(Long id, ProductRepository repository) {
+	private Category findcategoryByName(CategoryRepository categoryRepository) {
+		Category category = categoryRepository.findByName(nameCategory);
+		return category;
+	}
+
+	public Product update(Long id, ProductRepository repository, CategoryRepository categoryRepository) {
+		Category category = findcategoryByName(categoryRepository);
 		Product product = repository.findById(id).get();
 		product.setName(name);
 		product.setDescription(description);
 		product.setPrice(price);
+		product.setCategory(category);
 		return repository.save(product);
 	}
 }
